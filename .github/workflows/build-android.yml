@@ -1,47 +1,37 @@
-name: Build Android APK
+# Unity CI has persistent license activation issues with GameCI
+# FREE ALTERNATIVES:
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+# 1. LOCAL BUILDS (Recommended for learning):
+#    - Unity Editor > File > Build Settings > Android > Build
+#    - Upload APK to GitHub Releases manually
+
+# 2. GITLAB CI (Free tier includes CI/CD):
+#    - GitLab has better Unity license handling
+#    - 400 minutes/month free CI time
+
+# 3. CIRCLECI (Free tier):
+#    - 6000 build minutes/month free
+#    - Better Unity container support
+
+# 4. SELF-HOSTED RUNNER:
+#    - Use your own PC as GitHub Actions runner
+#    - Unlimited builds, no license issues
+
+name: Build Android APK - DISABLED
+
+# Disabled due to Unity license activation issues in CI
+# on:
+#   push:
+#     branches: [ main, master ]
+#   pull_request:
+#     branches: [ main, master ]
 
 jobs:
   build:
     name: Build Android
     runs-on: ubuntu-latest
+    if: false  # Disabled
     
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        lfs: true
-    
-    - name: Cache Unity Library
-      uses: actions/cache@v3
-      with:
-        path: Sky Monsters Game/Library
-        key: Library-Android-${{ hashFiles('Sky Monsters Game/ProjectSettings/**') }}
-        restore-keys: |
-          Library-Android-
-          Library-
-    
-    - name: Build Unity Project
-      uses: game-ci/unity-builder@v2
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      with:
-        projectPath: Sky Monsters Game
-        targetPlatform: Android
-        unityVersion: 2020.3.48f1
-        buildName: SkyMonsters
-        allowDirtyBuild: true
-    
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: SkyMonsters-Android
-        path: build/Android/SkyMonsters.apk
+    - name: Placeholder
+      run: echo "Use local builds or migrate to GitLab CI for free Unity builds"
