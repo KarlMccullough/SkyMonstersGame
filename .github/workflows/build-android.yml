@@ -27,25 +27,10 @@ jobs:
           Library-Android-
           Library-
     
-    - name: Activate Unity License
-      uses: game-ci/unity-request-activation-file@v2
-      id: getManualLicenseFile
-      with:
-        unityVersion: 2020.3.49f1
-    
-    - name: Request manual activation file
-      uses: game-ci/unity-activate@v2
-      env:
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      with:
-        license: Personal
-    
     - name: Build Unity Project
       uses: game-ci/unity-builder@v2
       env:
-        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       with:
         projectPath: Sky Monsters Game
         targetPlatform: Android
