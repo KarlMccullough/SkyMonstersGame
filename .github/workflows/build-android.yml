@@ -1,0 +1,45 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build Android
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        lfs: true
+    
+    - name: Cache Unity Library
+      uses: actions/cache@v3
+      with:
+        path: Sky Monsters Game/Library
+        key: Library-Android-${{ hashFiles('Sky Monsters Game/ProjectSettings/**') }}
+        restore-keys: |
+          Library-Android-
+          Library-
+    
+    - name: Build Unity Project
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      with:
+        projectPath: Sky Monsters Game
+        targetPlatform: Android
+        unityVersion: 2020.3.19f1
+        buildName: SkyMonsters
+        allowDirtyBuild: true
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: SkyMonsters-Android
+        path: build/Android/SkyMonsters.apk
