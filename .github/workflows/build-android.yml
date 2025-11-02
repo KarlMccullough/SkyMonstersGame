@@ -39,7 +39,7 @@ jobs:
         allowDirtyBuild: true
     
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: SkyMonsters-Android
         path: build/Android/SkyMonsters.apk
