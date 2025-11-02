@@ -34,7 +34,7 @@ jobs:
       with:
         projectPath: Sky Monsters Game
         targetPlatform: Android
-        unityVersion: 2020.3.49f1
+        unityVersion: 2020.3.48f1
         buildName: SkyMonsters
         allowDirtyBuild: true
     
