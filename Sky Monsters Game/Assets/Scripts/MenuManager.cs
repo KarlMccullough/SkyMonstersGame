@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Advertisements;
-using UnityEngine.Monetization;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
 public class MenuManager : MonoBehaviour
 {
-    private string adid = "3455593";
-    private string videoad = "video";
+    // Ads removed for cleaner build
 
     public static MenuManager instance;
 
@@ -34,8 +31,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        Advertisement.Initialize(adid, true);
+        // Advertisement.Initialize(adid, true); // Disabled ads
 
         scoreText.text = "" + 0;
         coinText.text = "" + 0;
@@ -112,11 +108,7 @@ public class MenuManager : MonoBehaviour
 
     void ADlauncher()
     {
-        
-        if (Advertisement.IsReady("rewardedVideo"))
-        {
-            
-            Advertisement.Show("rewardedVideo");
-        }
+        // Ads disabled - no longer showing advertisements
+        // Game continues without ads
     }
 }
